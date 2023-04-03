@@ -1,0 +1,44 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+{% include "header.html" %}
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('{{ url_for('static', filename='img/contact-bg.jpg')}}')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            {% if msg_sent: %}
+            <h1>Successfully sent your message.</h1>
+            {% else: %}
+            <h1>Contact Me</h1>
+            {% endif %}
+            <span class="subheading">Have questions? I have answers.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        {% if not msg_sent: %}
+
+        {{ wtf.quick_form(form, novalidate=True, button_map={"submit":"primary"}) }}
+
+        {{ ckeditor.load() }}
+        {{ ckeditor.config(name='body') }}
+
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+{% include "footer.html" %}
+{% endblock %}
