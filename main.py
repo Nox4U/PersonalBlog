@@ -275,4 +275,4 @@ def logout():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5002)
+    app.run(debug=os.getenv("DEBUG"), port=5002)
