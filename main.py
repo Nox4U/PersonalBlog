@@ -8,6 +8,8 @@ from sqlalchemy.orm import relationship
 from flask_gravatar import Gravatar
 from forms import CreatePostForm, ContactMe, RegisterForm, LoginForm, CommentForm
 from functools import wraps
+from dotenv import load_dotenv
+import os
 import datetime
 import smtplib
 
