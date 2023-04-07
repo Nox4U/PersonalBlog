@@ -13,14 +13,15 @@ import os
 import datetime
 import smtplib
 
-
-MY_EMAIL = "python.t2022@gmail.com"
-PASSWORD = "vphaycjxljetfhsq"
+load_dotenv()
+MY_YMAIL = os.getenv("MY_YMAIL")
+MY_GMAIL = os.getenv("MY_GMAIL")
+G_PASSWORD = os.getenv("G_PASSWORD")
 dt = datetime.datetime.now()
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
 ckeditor = CKEditor(app)
 Bootstrap(app)
 gravatar = Gravatar(
@@ -209,10 +210,10 @@ def contact():
     if form.validate_on_submit():
         with smtplib.SMTP("smtp.gmail.com") as connection:
             connection.starttls()
-            connection.login(user=MY_EMAIL, password=PASSWORD)
+            connection.login(user=MY_GMAIL, password=G_PASSWORD)
             connection.sendmail(
-                from_addr=MY_EMAIL,
-                to_addrs="python.t2022@yahoo.com",
+                from_addr=MY_GMAIL,
+                to_addrs=MY_YMAIL,
                 msg=f"Subject:Fake Blog Message!\n\nName: {form.name.data}"
                     f"\nEmail: {form.email.data}"
                     f"\nPhone: {form.phone_number.data}"
