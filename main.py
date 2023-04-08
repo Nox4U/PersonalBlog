@@ -60,7 +60,7 @@ def admin_only(f):
     return decorated_function
 
 
-##CONFIGURE TABLE
+# CONFIGURE TABLE
 class User(UserMixin, db.Model):
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
